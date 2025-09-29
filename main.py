@@ -1,4 +1,5 @@
 from TestCase import TestCase
+from TestResult import TestResult
 
 class MyTest(TestCase): 
     def set_up(self): 
@@ -17,13 +18,17 @@ class MyTest(TestCase):
         print("test_c")
 
 def main(): 
+    result = TestResult()
+
     test = MyTest("test_a")
-    test.run() 
+    test.run(result) 
 
     test = MyTest("test_b")
-    test.run() 
+    test.run(result) 
 
     test = MyTest("test_c")
-    test.run() 
+    test.run(result) 
+
+    print(result.summary())
 
 main()
