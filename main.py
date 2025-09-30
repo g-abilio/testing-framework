@@ -1,8 +1,11 @@
 from TestCase import TestCase
 from TestResult import TestResult
+from TestSuite import TestSuite
+from TestLoader import TestLoader
+from TestRunner import TestRunner
 from testing import TestCaseTest
 from testing import TestSuiteTest
-from TestSuite import TestSuite
+from testing import TestLoaderTest
 
 class MyTest(TestCase): 
     def set_up(self): 
@@ -54,4 +57,20 @@ def TestCaseTest_usage():
     suite.run(result)
     print(result.summary())
 
-TestCaseTest_usage()
+def TestLoaderTest_usage(): 
+    result = TestResult() 
+    loader = TestLoader() 
+
+    suite = loader.make_suite(TestLoaderTest.TestLoaderTest)
+    suite.run(result)
+    
+    print(result.summary())
+
+def TestRunner_usage(): 
+    loader = TestLoader() 
+    suite = loader.make_suite(TestLoaderTest.TestLoaderTest)
+    
+    runner = TestRunner() 
+    runner.run(suite)
+
+TestRunner_usage()
