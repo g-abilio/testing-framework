@@ -73,4 +73,18 @@ def TestRunner_usage():
     runner = TestRunner() 
     runner.run(suite)
 
-TestRunner_usage()
+def main(): 
+    loader = TestLoader() 
+    test_case_suite = loader.make_suite(TestCaseTest.TestCaseTest)
+    test_suite_suite = loader.make_suite(TestSuiteTest.TestSuiteTest)
+    test_loader_suite = loader.make_suite(TestLoaderTest.TestLoaderTest)
+
+    suite = TestSuite() 
+    suite.add_test(test_case_suite)
+    suite.add_test(test_suite_suite)
+    suite.add_test(test_loader_suite)
+
+    runner = TestRunner()
+    runner.run(suite)
+
+main()
