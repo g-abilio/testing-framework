@@ -1,5 +1,3 @@
-from TestCase import TestCase
-
 class TestSuite: 
     def __init__(self): 
         self.tests = []

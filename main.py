@@ -1,13 +1,13 @@
-from TestCase import TestCase
-from TestResult import TestResult
-from TestSuite import TestSuite
-from TestLoader import TestLoader
-from TestRunner import TestRunner
+from src import TestCase
+from src import TestResult
+from src import TestSuite
+from src import TestLoader
+from src import TestRunner
 from testing import TestCaseTest
 from testing import TestSuiteTest
 from testing import TestLoaderTest
 
-class MyTest(TestCase): 
+class MyTest(TestCase.TestCase): 
     def set_up(self): 
         print("set_up")
 
@@ -24,7 +24,7 @@ class MyTest(TestCase):
         print("test_c")
 
 def MyTest_usage(): 
-    result = TestResult()
+    result = TestResult.TestResult()
 
     test = MyTest("test_a")
     test.run(result) 
@@ -38,8 +38,8 @@ def MyTest_usage():
     print(result.summary())
 
 def TestCaseTest_usage(): 
-    result = TestResult()
-    suite = TestSuite()
+    result = TestResult.TestResult()
+    suite = TestSuite.TestSuite()
 
     suite.add_test(TestCaseTest.TestCaseTest("test_result_success_run"))
     suite.add_test(TestCaseTest.TestCaseTest("test_result_failure_run"))
@@ -58,8 +58,8 @@ def TestCaseTest_usage():
     print(result.summary())
 
 def TestLoaderTest_usage(): 
-    result = TestResult() 
-    loader = TestLoader() 
+    result = TestResult.TestResult() 
+    loader = TestLoader.TestLoader() 
 
     suite = loader.make_suite(TestLoaderTest.TestLoaderTest)
     suite.run(result)
@@ -67,24 +67,24 @@ def TestLoaderTest_usage():
     print(result.summary())
 
 def TestRunner_usage(): 
-    loader = TestLoader() 
+    loader = TestLoader.TestLoader()
     suite = loader.make_suite(TestLoaderTest.TestLoaderTest)
     
-    runner = TestRunner() 
+    runner = TestRunner.TestRunner() 
     runner.run(suite)
 
 def main(): 
-    loader = TestLoader() 
+    loader = TestLoader.TestLoader()
     test_case_suite = loader.make_suite(TestCaseTest.TestCaseTest)
     test_suite_suite = loader.make_suite(TestSuiteTest.TestSuiteTest)
     test_loader_suite = loader.make_suite(TestLoaderTest.TestLoaderTest)
 
-    suite = TestSuite() 
+    suite = TestSuite.TestSuite() 
     suite.add_test(test_case_suite)
     suite.add_test(test_suite_suite)
     suite.add_test(test_loader_suite)
 
-    runner = TestRunner()
+    runner = TestRunner.TestRunner() 
     runner.run(suite)
 
 main()

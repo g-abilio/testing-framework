@@ -1,4 +1,4 @@
-from TestResult import TestResult
+from .TestResult import TestResult
 
 class TestRunner:
     

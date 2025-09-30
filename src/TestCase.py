@@ -1,5 +1,3 @@
-from TestResult import TestResult
-
 class TestCase: 
     def __init__(self, test_method_name):
         self.test_method_name = test_method_name

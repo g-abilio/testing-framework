@@ -1,12 +1,12 @@
 from .TestCaseTest import TestStub
-from TestSuite import TestSuite
-from TestCase import TestCase
-from TestResult import TestResult
+from src import TestSuite
+from src import TestCase
+from src import TestResult
 
-class TestSuiteTest(TestCase): 
+class TestSuiteTest(TestCase.TestCase): 
     
     def test_suite_size(self): 
-        suite = TestSuite() 
+        suite = TestSuite.TestSuite() 
 
         suite.add_test(TestStub("test_success"))
         suite.add_test(TestStub("test_failure"))
@@ -15,8 +15,8 @@ class TestSuiteTest(TestCase):
         assert len(suite.tests) == 3
 
     def test_suite_success_run(self): 
-        result = TestResult()
-        suite = TestSuite() 
+        result = TestResult.TestResult()
+        suite = TestSuite.TestSuite() 
 
         suite.add_test(TestStub("test_success"))
 
@@ -25,8 +25,8 @@ class TestSuiteTest(TestCase):
         assert result.summary() == "1 run, 0 failed, 0 error"
 
     def test_suite_multiple_run(self): 
-        result = TestResult() 
-        suite = TestSuite() 
+        result = TestResult.TestResult() 
+        suite = TestSuite.TestSuite() 
 
         suite.add_test(TestStub("test_success"))
         suite.add_test(TestStub("test_failure"))

@@ -1,7 +1,7 @@
-from TestResult import TestResult
-from TestCase import TestCase 
+from src import TestResult
+from src import TestCase
 
-class TestStub(TestCase): 
+class TestStub(TestCase.TestCase): 
 
     def test_success(self): 
         assert True 
@@ -12,10 +12,10 @@ class TestStub(TestCase):
     def test_error(self): 
         raise Exception
     
-class TestCaseTest(TestCase): 
+class TestCaseTest(TestCase.TestCase): 
     
     def set_up(self): 
-        self.result = TestResult() 
+        self.result = TestResult.TestResult() 
 
     def test_result_success_run(self): 
         stub = TestStub("test_success")
@@ -71,23 +71,23 @@ class TestCaseTest(TestCase):
         self.assert_equal("", "")
         self.assert_equal("foo", "foo")
         self.assert_equal([], [])
-        self.assert_equal(['foo'], ['foo'])
+        self.assert_equal(["foo"], ["foo"])
         self.assert_equal((), ())
-        self.assert_equal(('foo',), ('foo',))
+        self.assert_equal(("foo",), ("foo",))
         self.assert_equal({}, {})
-        self.assert_equal({'foo'}, {'foo'})
+        self.assert_equal({"foo"}, {"foo"})
 
     def test_assert_in(self):
-        animals = {'monkey': 'banana', 'cow': 'grass', 'seal': 'fish'}
+        animals = {"monkey": "banana", "cow": "grass", "seal": "fish"}
 
-        self.assert_in('a', 'abc')
-        self.assert_in('foo', ['foo'])
+        self.assert_in("a", "abc")
+        self.assert_in("foo", ["foo"])
         self.assert_in(1, [1, 2, 3])
-        self.assert_in('monkey', animals)
+        self.assert_in("monkey", animals)
 
-class TestSpy(TestCase): 
+class TestSpy(TestCase.TestCase): 
     def __init__(self, name): 
-        TestCase.__init__(self, name)
+        TestCase.TestCase.__init__(self, name)
         self.was_run = False
         self.was_set_up = False
         self.was_tear_down = False 

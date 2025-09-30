@@ -1,4 +1,4 @@
-from TestSuite import TestSuite
+from .TestSuite import TestSuite
 
 class TestLoader: 
 
