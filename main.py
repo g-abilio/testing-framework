@@ -1,6 +1,8 @@
 from TestCase import TestCase
 from TestResult import TestResult
 from testing import TestCaseTest
+from testing import TestSuiteTest
+from TestSuite import TestSuite
 
 class MyTest(TestCase): 
     def set_up(self): 
@@ -34,31 +36,22 @@ def MyTest_usage():
 
 def TestCaseTest_usage(): 
     result = TestResult()
+    suite = TestSuite()
 
-    test = TestCaseTest.TestCaseTest("test_result_success_run")
-    test.run(result)
+    suite.add_test(TestCaseTest.TestCaseTest("test_result_success_run"))
+    suite.add_test(TestCaseTest.TestCaseTest("test_result_failure_run"))
+    suite.add_test(TestCaseTest.TestCaseTest("test_result_error_run"))
+    suite.add_test(TestCaseTest.TestCaseTest("test_result_multiple_run"))
+    suite.add_test(TestCaseTest.TestCaseTest("test_was_set_up"))
+    suite.add_test(TestCaseTest.TestCaseTest("test_was_run"))
+    suite.add_test(TestCaseTest.TestCaseTest("test_was_tear_down"))
+    suite.add_test(TestCaseTest.TestCaseTest("test_template_method"))
 
-    test = TestCaseTest.TestCaseTest("test_result_failure_run")
-    test.run(result)
+    suite.add_test(TestSuiteTest.TestSuiteTest("test_suite_size"))
+    suite.add_test(TestSuiteTest.TestSuiteTest("test_suite_success_run"))
+    suite.add_test(TestSuiteTest.TestSuiteTest("test_suite_multiple_run"))
 
-    test = TestCaseTest.TestCaseTest("test_result_error_run")
-    test.run(result)
-
-    test = TestCaseTest.TestCaseTest("test_result_multiple_run")
-    test.run(result)
-
-    test = TestCaseTest.TestCaseTest("test_was_set_up")
-    test.run(result)
-
-    test = TestCaseTest.TestCaseTest("test_was_run")
-    test.run(result)
-
-    test = TestCaseTest.TestCaseTest("test_was_tear_down")
-    test.run(result)
-
-    test = TestCaseTest.TestCaseTest("test_template_method")
-    test.run(result)
-
+    suite.run(result)
     print(result.summary())
 
 TestCaseTest_usage()
